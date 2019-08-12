@@ -49,7 +49,13 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const post = await db.insert(req.body);
-    res.status(201).json(post);
+    if (posts.length > 0) {
+      res.status(200);
+    } else {
+      res.status(404).json({
+        message: "The post with the specified ID does not exist."
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -61,6 +67,18 @@ router.post("/", async (req, res) => {
 // POST /posts/:id/comments
 
 // DELETE /posts/:id
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await db.remove(id);
+    res.status(200);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: "The post could not be removed"
+    });
+  }
+});
 
 // PUT /posts/:id
 
