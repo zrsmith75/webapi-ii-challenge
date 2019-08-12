@@ -43,8 +43,18 @@ router.get("/:id", async (req, res) => {
 });
 
 // GET /posts/:id/comments
-// router.get()
-
+router.get("/:id/comments", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const comments = await db.findPostComments(id);
+    res.status(200).json(comments);
+  } catch (error) {
+    console.log(errro);
+    res.status(500).json({
+      error: "The comments information could not be retrieved."
+    });
+  }
+});
 // POST /posts
 router.post("/", async (req, res) => {
   try {
