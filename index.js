@@ -6,10 +6,10 @@ const port = 4000;
 
 server.use(express.json());
 // /api/ route
-server.use("/api", postRoutes);
+server.use("/api/posts", postRoutes);
 
 server.get("/", (req, res) => {
-  res.status(200).send("Hello from express");
+  res.status(200).send("Hello from express! Lambda Web API Challenge II");
 });
 
 server.listen(port, () => {

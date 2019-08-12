@@ -4,11 +4,11 @@ const db = require("../data/db.js");
 const router = express.Router();
 
 // GET /posts
-router.get("/", (req, res) => {
-  res.status(200).send("GET");
-});
+// router.get("/", (req, res) => {
+//   res.status(200).send("GET");
+// });
 
-router.get("/posts", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const posts = await db.find(req.query);
     res.status(200).json(posts);
@@ -22,7 +22,7 @@ router.get("/posts", async (req, res) => {
 
 // GET /posts/:id
 
-router.get("/posts/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const post = await db.findById(id);
@@ -43,8 +43,20 @@ router.get("/posts/:id", async (req, res) => {
 });
 
 // GET /posts/:id/comments
+// router.get()
 
 // POST /posts
+router.post("/", async (req, res) => {
+  try {
+    const post = await db.insert(req.body);
+    res.status(201).json(post);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: "There was an error while saving the post to the database"
+    });
+  }
+});
 
 // POST /posts/:id/comments
 
