@@ -47,7 +47,14 @@ router.get("/:id/comments", async (req, res) => {
   try {
     const { id } = req.params;
     const comments = await db.findPostComments(id);
-    res.status(200).json(comments);
+
+    if (comments.length > 0) {
+      res.status(200).json(comments);
+    } else {
+      res.status(404).json({
+        message: "The post with the specified ID does not exist."
+      });
+    }
   } catch (error) {
     console.log(errro);
     res.status(500).json({
