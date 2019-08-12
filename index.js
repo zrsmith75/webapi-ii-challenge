@@ -18,13 +18,19 @@ server.get("/", (req, res) => {
 
 // request handlers
 
-// GET
+// GET /api/posts
 
-// POST
+// GET /api/posts/:id
 
-// DELETE
+// GET /api/posts/:id/comments
 
-// PUT
+// POST /api/posts
+
+// POST /api/posts/:id/comments
+
+// DELETE /api/posts/:id
+
+// PUT /api/posts/:id
 
 // Listen
 server.listen(port, () => {
