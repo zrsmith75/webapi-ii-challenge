@@ -1,6 +1,6 @@
 const express = require("express");
 const postRoutes = require("./posts/postRoutes.js");
-const db = require("./data/db.js");
+// const db = require("./data/db.js");
 const server = express();
 const port = 4000;
 
