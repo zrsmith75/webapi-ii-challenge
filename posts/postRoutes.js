@@ -81,5 +81,18 @@ router.delete("/:id", async (req, res) => {
 });
 
 // PUT /posts/:id
+router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const changes = req.body;
+    const change = await db.update(id, changes);
+    res.status(200).json(change);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: "The post information could not be modified."
+    });
+  }
+});
 
 module.exports = router;
